@@ -1,3 +1,7 @@
+pipelineJob('docker-build-and-run') {
+    definition {
+        cps {
+            script('''
 pipeline {
     agent any
 
@@ -46,6 +50,10 @@ pipeline {
             echo 'Limpiando: Deteniendo y eliminando el contenedor...'
             sh 'docker stop eurekams-container || true'
             sh 'docker rm eurekams-container || true'
+        }
+    }
+}
+''')
         }
     }
 }
