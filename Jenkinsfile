@@ -1,7 +1,3 @@
-pipelineJob('docker-build-and-run') {
-    definition {
-        cps {
-            script('''
 pipeline {
     agent any
 
@@ -20,11 +16,17 @@ pipeline {
             }
         }
 
+        stage('Verify Files') {
+            steps {
+                echo 'Verificando los archivos en el directorio...'
+                sh 'ls -al /var/jenkins_home/workspace/eurekams'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
-                echo 'Construyendo la imagen Docker usando el DockerFile...'
-                sh 'ls -al /var/jenkins_home/workspace/eurekams'
-                sh 'docker build -t eurekams /var/jenkins_home/workspace/eurekams -f /var/jenkins_home/workspace/eurekams/DockerFile'
+                echo 'Construyendo la imagen Docker usando el Dockerfile...'
+                sh 'docker build -t eurekams . -f ./Dockerfile'
             }
         }
 
@@ -50,10 +52,6 @@ pipeline {
             echo 'Limpiando: Deteniendo y eliminando el contenedor...'
             sh 'docker stop eurekams-container || true'
             sh 'docker rm eurekams-container || true'
-        }
-    }
-}
-''')
         }
     }
 }
