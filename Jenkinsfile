@@ -16,13 +16,6 @@ pipeline {
             }
         }
 
-        stage('Verify Files') {
-            steps {
-                echo 'Verificando los archivos en el directorio...'
-                sh 'ls -al /var/jenkins_home/workspace/eurekams'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 echo 'Construyendo la imagen Docker usando el Dockerfile...'
