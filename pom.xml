@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.pt.eurekams</groupId>
 	<artifactId>eurekams</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version> <!-- Cambia el número según corresponda -->
 	<name>eurekams</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
